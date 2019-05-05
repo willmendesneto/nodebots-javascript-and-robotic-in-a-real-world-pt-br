@@ -1,13 +1,13 @@
-# Acknowledgements
+# Agradecimentos
 
-I would like to say thank initially my mother (who has played the role of mother and father for many times), this wonderful person who teaches me many of the values that I take with me until today, being my example to this day. Marco Marocci and Robson Mário, who are like parents to me and my brother Leonardo Araújo who was always with me when I needed and who also gave me 2 brothers, Ramon Pombo and Matheus Pombo.
+Gostaria de agradecer inicialmente a minha mãe (que fez o papel de mãe e pai por muitas vezes), essa pessoa maravilhosa que me ensinou muitos dos valores e que levo comigo até hoje, sendo o meu exemplo até hoje. Marco Marocci e Robson Mário, que são como pais para mim e ao meu irmão Leonardo Araújo que sempre esteve comigo quando eu precisei e que me deu também mais 2 irmãos, Ramon Pombo e Matheus Pombo.
 
-I would like to thank my wife, Nilana Rocha, for all her support. It was one of the crucial factors and without a doubt, this book would not be a reality. Thank you so much for everything.
+Gostaria de agradecer a minha mulher, Nilana Rocha, por todo apoio dado. Ela foi um dos fatores cruciais e com certeza sem ela este livro não seria uma realidade. Muito obrigado por tudo.
 
-A great time to remember all my friends from LinguÁgil Group and #horaExtraSSA from Salvador-BA. You were people who motivated me to be the professional that I am today, encouraging and motivating me to seek and share knowledge. Thank you all. For some Recife's folks who are amazing people and presented me with cheese curd, macaxeira (or aipim?) and much love.
+Um grande momento para lembrar de todos os meus amigos do Grupo LinguÁgil e #horaExtraSSA de Salvador-BA. Vocês foram pessoas que me motivaram a ser o profissional que sou atualmente, que me motivaram a buscar e compartilhar conhecimento. Obrigado a todos vocês. Ao pessoal de Recife que são pessoas que tenho muito carinho e me apresentaram queijo coalho, macaxeira (ou aipim?) e muito carinho.
 
-Finally, I would like to thank [Nelson Glauber](https://twitter.com/nglauber) and [Fagner Brack](https://twitter.com/fagnerbrack) for their support in reviewing the contents of this book and for everyone who Have contributed directly or indirectly to the composition of this book, such as [Rafael Gomes](https://twitter.com/gomex), [Juliano Bersano](https://twitter.com/julianobersano), [Sarah Atkinson](https://twitter.com/SarahvAko) and several others who supported me in this process and suggested improvements at this stage.
+Por último, gostaria de agradecer [Nelson Glauber](https://twitter.com/nglauber) e [Fagner Brack](https://twitter.com/fagnerbrack) pelo suporte na revisão do conteúdo deste livro e a todos que me ajudaram direta ou indiretamente na composição deste livro, como [Rafael Gomes](https://twitter.com/gomex), [Juliano Bersano](https://twitter.com/julianobersano), [Sarah Atkinson](https://twitter.com/SarahvAko) e vários outros que me deram suporte neste processo e sugeriram melhorias nesta etapa.
 
-Thank you all.
+Muito obrigado a todos.
 
 *Wilson Mendes*

@@ -1,36 +1,65 @@
-# Appendix
+# Apêndice
 
 ## Protoboard
 
-When you need prototype a circuit quickly and temporarily, you are using a protoboard.
+Quando você precisa rapidamente e temporariamente protótipo de um circuito, você estará usando um protoboard.
+Protoboard são placas que conseguem simular conexões de componentes eletrônicos. Ela possui pequenos oríficios,
+aonde conectaremos os nossos fios
 
-Protoboard are boards that can simulate electronic component connections. It has small holes, delivering your wires.
-
+![Protoboard](images/image00.png)
 
 ## Piezo
 
-Piezo is a sensor that emits a beep, such as a horn. This signal can be created in an application Nodebots from a numeric value or an abstraction of sound/music notes, which makes their manipulation simpler.
+Piezo é um sensor que emite um sinal sonoro, tal como uma buzina. Este sinal pode ser criado em uma aplicação
+Nodebots a partir de um valor numérico ou uma abstração de notas sonoras, o que torna a sua manipulação mais simples.
+
+![Piezo](images/image35.jpg)
 
 
-## Resistors
+## Resistores
 
-The resistors are widely used in electronics as one of the first electronic components that users have the first contact and one of the most used. They are small enough in pill form with stripes in most cases.
+Os resistores são vastamente utilizados na eletrônica, send um dos primeiros componentes eletrônicos com o qual
+lidamos e um dos que mais utilizaremos. Eles são as bastante pequenos em forma de pílula com listras na maioria das
+placas de circuito.
 
-A resistor is an electronic component that limits the flow of electrons dissipating energy in the form of heat, since the electricity has to struggle to flow through something with a high resistance. It uses a large amount of energy and converting it into heat.
+Um resistor é um componente eletrônico que limita o fluxo de elétrons dissipando energia sob a forma de calor, pois a
+eletricidade tem que lutar para fluir através de algo com uma alta resistência. Utilizando assim uma grande
+quantidade de energia e convertendo isso em calor.
+
+![Resistores](images/resistors.png)
 
 
 ## LED (Light-emitting diode)
 
-LED is an abbreviation for LED (Light-emitting diode). A light emitting diode type component.
+LED é uma abreviação de diodo emissor de luz (Light-emitting diode). Um componente do tipo de diodo que emite luz.
+
+![Light-emitting diode](images/image28.png)
+
+## Sensores
+
+Dispositivo que converte dados do mundo real (analógica) em dados que um computador pode entender usando
+ADC e convertendo os dados do formato Analógico para o Digital. Utilizaremos sensores para detectarmos eventos ou
+mudanças no local e enviaremos para leitura na nossa aplicação.
 
 
-## Sensors
+## Condutor de Proteção (Fio Terra ou Ground)
 
-A device that converts real-world (analog) data into data that a computer can understand using ADC and converting data from Analog to Digital format. We will use sensors to detect events or environment changes and we will send it for you to read in our application.
+É o fio de entrada de condutor elétrico que possui a função de "aterrar" todos os dispositivos que precisarem
+utilizar seu potencial como referência ou suas propriedades elétricas.
+
+Em sistemas de potência, o terra possui as funções de referência elétrica para a tensão, sistemas de proteção,
+controle para excesso de carga/energia e proteção de equipamentos.
 
 
-## Protective Conductor (Ground or Ground Wire)
+## Fios de condução
 
-It is the input wire of an electric conductor that has the function of "grounding" all the devices that need to use its potential as a reference or its electrical properties.
+Fios isolados curto com extremidades sem capa de isolamento que usamos para conectar dois pontos em um circuito ou protoboard.
 
-In power systems, the grount connector has the functions of electrical reference for voltage, protection systems, control for overload/power and equipment protection.
+![Fios de condução](images/jumpers.png)
+
+
+## Botão
+
+É um mecanismo simples para controlar alguns aspectos de uma máquina ou um processo. Ao clicar no botão a corrente é liberada e ao soltar o botão a corrente é cancelada.
+
+![Botão](images/push-button.png)

@@ -1,48 +1,50 @@
-# Supporting Your Code on Multiple Operating Systems
+# Dando suporte ao seu código em vários sistemas operacionais
 
-In this stage of the book, we will then validate and verify the coverage of tests in our project on different operating systems, as well as enable different web services for workflow improvements, such as continuous integration tools and code coverage.
+Nesta etapa do livro iremos então validar e verificar a cobertura de testes no nosso projeto em diferentes sistemas operacionais, além de habilitarmos diferentes serviços web para melhorias de workflow, como ferramentas de integração contínua e cobertura de código.
 
-This step is very important because these tools help us in the security process of our code, checking different criteria of acceptance of our application in an automated way.
-
-
-## Adding Continuous Integration Servers to Your Project
+Esta etapa é muito importante, pois estas ferramentas nos auxiliam no processo de segurança do nosso código, checando diferentes critérios de aceitação da nossa aplicação de maneira automatizada.
 
 
-Like all quality projects, our Nodebots project will be concerned with some other aspects, such as automating the test suite, build and other tasks relevant to our project.
-
-For this, we will rely on the help of a continuous integration server. There are several in the market, being free or paid, and in this stage of the book, we will know a little more about the operation and configuration of two of them: Travis-CI and Appveyor.
+## Adicionando servidores de integração contínua ao seu projeto
 
 
-### Travis-CI: Checking Your Code on Linux and OSX
-
-Knowing that currently, the most used operating systems are Unix/Linux, Windows and OSX we will create checks for each of them and for this the Travis-CI comes into play.
-
-It is one of the most famous services of [continuous integration](http://blog.caelum.com.br/integracao-continua/) and assists in the process of integrating the new features or bug fixes of the code of the current project in several Environments, and can even deploy for production if all the validation steps are correct.
+Como todo projeto de qualidade, o nosso projeto Nodebots vai se preocupar em alguns outros aspectos, como automatização da suíte de testes, build e outras tarefas relevantes ao nosso projeto.
 
 
-Let's go to the official project site [travis-ci](https://travis-ci.org/) and enable access using our Github account. Click on the *"Sign up"* button and enable access to your repositories.
+Para isso vamos contar com o auxílio de um servidor de integração contínua. Existem vários no mercado, sendo gratuitos ou pagos, e nesta etapa do livro vamos conhecer um pouco mais do funcionamento e configuração de dois deles: Travis-CI e Appveyor.
 
-![Travis-CI Service Site](images/image27.png)
 
-After this step, you will be redirected to a new page with all your repositories. To add a new one just click on the "+" icon next to the text *"My Repositories"*.
+### Travis-CI: checando seu código no  Linux e OSX
 
-![Page of a repository configured in Travis-CI](images/image24.png)
+Sabendo que atualmente os sistemas operacionais mais utilizados são Unix/Linux, Windows e OSX vamos criar verificações para cada um deles e para isto entra em cena o Travis-CI.
 
-Now, you will be redirected to a new page with all your repositories. To add a new one just click on the "+" icon next to the text "My Repositories".
 
-This next step is very simple since the page has a tutorial showing each of the steps to enable the integration of Travis-CI with its repository in Github, as we can see in the image below.
+Ele é um dos mais famosos serviços de [integração contínua](http://blog.caelum.com.br/integracao-continua/) e auxilia no processo de integração das novas funcionalidades ou correção de bugs do código do atual projeto em vários ambientes, podendo até mesmo efetuar o deploy para produção, caso todos os passos de validação estejam corretos.
 
-![Synchronizing repositories with the service](images/image40.png)
 
-On the same page, all your repositories will be listed so you can choose and enable Travis-CI integration with your project. To enable it, just click the grey button with an "X" and when it changes colour to green it means that everything went as expected and its repository is synchronised with Travis-CI.
+Vamos então ao site oficial do projeto [travis-ci](https://travis-ci.org/) e habilitar o acesso utilizando a nossa conta do Github. Clique no botão *"Sign up"* e habilite acesso aos seus repositórios.
 
-Travis-CI is fully configurable and you can add information from a wide range of commands, from commands to be invoked before, during or after the build, and even configure the types of operating systems that the tasks should take place.
+![Site do serviço Travis-CI](images/image27.png)
 
-These settings will be in the `.travis.yml` file that will be in the root folder of our project. Let's explain a bit more about configuring these tasks in Travis-CI.
+Após esta etapa você será redirecionado para uma  nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto *"My Repositories"*.
 
-![Activating travis webhook](images/image49.png)
+![Página de um repositório configurado no Travis-CI](images/image24.png)
 
-First, in the `.travis.yml` file, we will add the `os` field, with the appropriate information of the operating systems used for our tests.
+Após esta etapa você será redirecionado para uma  nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto "My Repositories".
+
+Esta próxima etapa é bem simples já que a página possui um tutorial mostrando cada um dos passos para habilitar a integração do Travis-CI com o seu repositório no Github, como podemos observar na imagem abaixo.
+
+![Sincronizando os repositórios com o serviço](images/image40.png)
+
+Na mesma página, será listado todos os seus repositórios para que você escolha e habilite a integração do Travis-CI ao seu projeto. Para habilitar basta clicar no botão cinza com um "X" e quando ele mudar a cor para verde quer dizer que esta tudo correu como esperado e o seu repositório está sincronizado com o Travis-CI.
+
+O Travis-CI é totalmente configurável e você pode adicionar informações das mais diversas, sendo elas desde comandos a serem invocados antes, durante ou depois do build, podendo até mesmo configurar os tipos de sistemas operacionais que as tarefas devem acontecer.
+
+Estas configurações ficarão no arquivo `.travis.yml` que ficará na pasta raíz do nosso projeto. Vamos explicar um pouco mais sobre como configurar estas tarefas no Travis-CI.
+
+![Ativando o webhook do travis](images/image49.png)
+
+Primeiramente, no arquivo `.travis.yml`, vamos adicionar o campo `"os"`, com as devidas informações dos sistemas operacionais utilizados para os nossos testes.
 
 ```
 ...
@@ -52,7 +54,7 @@ os:
 ...
 ```
 
-We will also add the `"node_js"` field, which will be our information about the NodeJS versions that the tasks should be used in our tasks. In our case, we will only add one version, but we could add several others based on our support needs, for example.
+Adicionaremos também o campo `"node_js"`, aonde ficarão as nossas informações sobre as versões de NodeJS que as tasks deverão ser utilizados nas nossas tasks. No nosso caso adicionaremos somente uma versão, mas poderíamos adicionar várias outras com base nas nossas necessidades de suporte, por exemplo.
 
 ```
 ...
@@ -61,9 +63,10 @@ node_js:
 ...
 ```
 
-Our continuous integration server is nothing more than a container with a complete operating system. So we can also configure environment variables in it. In this case, we will add the variable `NO_SERIALPORT_INSTALL`, specifying that we should not install the 'serialport' package in this case because it is a test that uses a` mock` of a physical board.
+O nosso servidor de integração contínua nada mais é do que um container com um sistema operacional completo. Sendo assim podemos também configurar variáveis de ambiente nele. Neste caso adicionaremos a variável `NO_SERIALPORT_INSTALL`, especificando que não devemos instalar o pacote "serialport" neste caso, pois trata-se de um teste que utiliza um `mock` de um board físico.
 
-NOTE: The idea of this book is to focus on the concepts directly related to Nodebots and integrations with the javascript repository created, so I will not explain the concept of `containers`. If you want to know more about this concept used by Travis-CI, visit the [official Docker project website](https://www.docker.com).
+
+OBS: A idéia deste livro é de focar nos conceitos relacionados diretamente com Nodebots e integrações com o repositório javascript criado, por isso não explicarei sobre o conceito de `containers`. Caso queira saber mais sobre este conceito utilizado pelo Travis-CI, acesse a página oficial do [projeto Docker](https://www.docker.com).
 
 ```
 ...
@@ -72,7 +75,7 @@ env:
 ...
 ```
 
-We can also define the set of tasks that will be used before and after our Travis script. In this case, we will use `before` for the commands that must occur before our main script and` after` for the commands that must occur after the Travis commands, as you can see in the following code snippet:
+Podemos também definir o conjunto de tarefas que serão utilizados antes e depois do nosso script do travis. Neste caso utilizaremos `before` para os comandos que devem ocorrer antes do nosso script principal e `after` para os comandos que devem ocorrer depois dos comandos travis, como vocês podem visualizar no trecho de código a seguir:
 
 ```
 ...
@@ -85,7 +88,7 @@ after_script:
 ...
 ```
 
-In this case, we are installing our dependencies and running our tests. All this in a very simple and well-defined way. The contents of our `.travis.yml` file with all the changes will be as follows:
+Neste caso estamos instalando as nossas dependências e rodando os nossos testes. Tudo isto de uma maneira bem simples e bem definida. O conteúdo do nosso arquivo `.travis.yml` com todas as alterações será o seguinte:
 
 ```
 language: node_js
@@ -104,44 +107,44 @@ env:
   - NO_SERIALPORT_INSTALL=1
 ```
 
-We can see that the Travis-CI build is a bit different now since we are running the same setup on Linux and OSX operating systems, identified by the icons of each operating system.
+Podemos perceber que o build do Travis-CI agora é um pouco diferente, pois estamos rodando o mesmo setup nos sistemas operacionais Linux e OSX, identificados pelos ícones de cada sistema operacional.
 
-![List of used operating systems](images/image01.png)
+![Lista de sistemas operacionais utilizados](images/image01.png)
 
-With the integration tested, let's then put the Travis-ci badge in our `README.md` file in the repository. With this, you will see an image with the status of the build.
+Com a integração testada, vamos então colocar o badge do travis-ci no nosso arquivo `README.md` do repositório. Com isto você verá uma imagem com o status do build.
 
 ```
 [![Build Status](https://travis-ci.org/willmendesneto/build-checker.png?branch=master)](https://travis-ci.org/willmendesneto/build-checker)
 ```
 
-With this, we have finished our integration with Travis-CI continuous integration server and we have our entire suite of tests running on Linux and OSX systems. In this next step we will configure the same tasks, but to be verified by the Windows operating system, using another continuous integration server called Appveyor.
+Com isto terminamos a nossa integração com o servidor de integração contínua Travis-CI e temos toda a nossa suite de testes rodando nos sistemas Linux e OSX. Nesta próxima etapa vamos configurar as mesmas tarefas, mas para serem verificadas no sistema operacional Windows, utilizando outro servidor de integração contínua chamado Appveyor.
 
 
-### Appveyor: Checking Your Code on Windows
+### Appveyor: checando seu código no Windows
 
-Many projects are developed on Unix-based operating systems by default and adding support for Windows was considered a big challenge for some, since building a Windows test environment was not trivial, requiring the purchase of software licenses.
+Muitos projetos são desenvolvidos em sistemas operacionais baseados no Unix por padrão e adicionar suporte ao Windows era considerado um grande um desafio para alguns, pois montar um ambiente de teste do Windows não era algo trivial, exigindo a compra de licenças de software.
 
-The continuous integration service [Appveyor](https://www.appveyor.com/) is one of the solutions used for testing projects hosted on GitHub in Windows environments, facilitating this process and ensuring that our code is [cross- Platform](https://en.wikipedia.org/wiki/Cross-platform), running on major operating systems.
+O serviço de integração contínua [Appveyor](https://www.appveyor.com/) é uma das soluç	oes usadas para testes de projetos hospedados no GitHub em ambientes Windows, facilitando este processo e assegurando que o nosso código é [cross-platform](https://en.wikipedia.org/wiki/Cross-platform), funcionando nos principais sistemas operacionais.
 
-Adding Appveyor support to our project is a fairly simple task. We will then visit the official website of the project and create a login with our information.
+Adicionar o suporte do Appveyor ao nosso projeto é uma tarefa bastante simples. Vamos então visitar o site oficial do projeto e criar um login com as nossas informações.
 
-![Appveyor Site](images/image46.png)
+![Site do Appveyor](images/image46.png)
 
-On the login page, we have some options listed with support for some of the major code repositories on the internet. In this option we will use Github, to facilitate the next steps, but it is worth remembering that you can use any of the options supported for *login*.
+Na página de login temos algumas opções listadas com suporte a alguns dos principais repositórios de código na internet. Nesta opção vamos utilizar o Github, para facilitar os próximos passos, mas vale lembrar que você pode utilizar quaisquer das opções suportadas para *login*.
 
-![Logging in to Appveyor](images/image44.png)
+![Efetuando login no Appveyor](images/image44.png)
 
-With your user created and your access working, the main page after login is a page listing all of your repositories based on a category located on the left side of the site. In our case, we will choose the `build-checker` project and click on the 'Add' button to add the support to our project.
+Com o seu usuário criado e seu acesso funcionando, a página principal após o login é uma página listando todos os seus repositórios baseado em uma categoria localizada no lado esquerdo do site. No nosso caso, vamos escolher o projeto `build-checker` e clicaremos no botão *"Add"* para adicionarmos o suporte ao nosso projeto.
 
-We will then see the page of our project with the information specific to it, currently.
+Veremos então a página do nosso projeto com as informações específicas do mesmo, atualmente.
 
 ![](images/image07.png)
 
-Now that we have our project configured we will create our `appveyor.yml` file, where our test settings will be. This file is very similar to Travis-CI in some ways.
+Agora que já temos o nosso projeto configurado vamos criar então o nosso arquivo `appveyor.yml`, onde ficarão as nossas configurações de testes. Este arquivo é bem similar ao do Travis-CI em alguns aspectos.
 
-The contents of our `appveyor.yml` file with all the changes will be as follows:
+O conteúdo do nosso arquivo `appveyor.yml` com todas as alterações será o seguinte:
 
-We will add the version of NodeJS used in the environment field of our configuration file.
+Adicionaremos a versão utilizada do NodeJS no campo environment do nosso arquivo de configuração.
 
 ```
 ...
@@ -151,9 +154,9 @@ environment:
 ...
 ```
 
-The platform field will be used to describe the platforms used. Note that in this case instead of having the differentiation between operating systems, we have between operating system platforms (x86 and 64x).
+O campo platform será utilizado para descrever as plataformas utilizadas. Percebam que neste caso ao invés de termos a diferenciação entre sistemas operacionais, temos entre plataformas do sistema operacional (x86 e 64x).
 
-This is also interesting if there is a need to have a notion of the difference in performance, performance and other aspects of the same application on different platforms.
+Isso é interessante também caso haja a necessidade de ter uma noção da diferença de desempenho, performance e outros aspectos da mesma aplicação em diferentes plataformas.
 
 ```
 ...
@@ -163,9 +166,7 @@ platform:
 ...
 ```
 
-The install field will list our initial commands. Note that ps is a command to install NodeJS with the one specified in the file.
-
-After this step we cleared the cache using the npm cache clean command for security measure in order to avoid possible false positives in our tests and, after completing this command, we will then install our dependencies using the npm install command.
+O campo install terá a lista dos nossos comandos iniciais. Perceba que o ps é um comando para instalarmos o NodeJS com a especificada no arquivo. Após esta etapa limpamos o cache usando o comando npm cache clean por medida de segurança, a fim de evitar possíveis falsos positivos nos nossos testes e, terminado este comando, vamos então instalar as nossas dependências utilizando o comando npm install.
 
 ```
 ...
@@ -176,7 +177,7 @@ install:
 ...
 ```
 
-The test_script field will have the list of our commands to execute at the time of running our tests. We are directly accessing the node_modules folder and invoking the tests from them with the `node_modules/.bin/Istanbul cover node_modules/mocha/bin/_mocha -- -R dot` command, because we use the make test command in our `npm test`.
+O campo test_script terá a lista dos nossos comandos a serem executados no momento de execução dos nossos testes. Estamos acessando diretamente a pasta node_modules e invocando os testes a partir delas com o comando `node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R dot`, pelo fato de utilizarmos o comando make test no nosso comando `npm test`.
 
 ```
 ...
@@ -185,7 +186,7 @@ test_script:
   - cmd: node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- -R dot
 ```
 
-As our case does not require the creation of a build, we will add the information in our file with the `off` value and we will configure our build to be finalised as soon as possible by adding the `fast_finish` field with the value `true`.
+Como o nosso caso não é necessário a criação de um build, vamos adicionar a informação no nosso arquivo com o valor `off` e vamos configurar o nosso build para ser finalizado o mais rápido possível adicionando o campo `fast_finish` com o valor `true`.
 
 ```
 build: off
@@ -194,7 +195,7 @@ matrix:
 ...
 ```
 
-The final content of our `appveyor.yml` file with all changes will be as follows:
+O conteúdo final do nosso arquivo `appveyor.yml` com todas as alterações será o seguinte:
 
 ```
  Fix line endings on Windows
@@ -218,136 +219,135 @@ matrix:
   fast_finish: true
 ```
 
-Notice that in this case, we have the list of our differentiated build by platforms on the listing page.
+Percebam que neste caso temos a lista dos nossos build diferenciada por plataformas na página de listagem.
 
-![List of platforms used by the service](images/image10.png)
+![Lista de plataformas utilizadas pelo serviço](images/image10.png)
 
-With the new integration tested, we will then update the README.md file from the repository with the Appveyor badge. With this, you will see an image with the status of the build, as well as what we have inserted previously.
-
+Com a nova integração testada, vamos então atualizar o arquivo README.md do repositório com o badge do Appveyor. Com isto você verá uma imagem com o status do build, assim como o que já inserimos anteriormente.
 
 ```
 [![Build Windows Status](https://ci.appveyor.com/api/projects/status/github/<nome-do-seu-usuario-ou-organização>/<nome-do-seu-repositório>?svg=true)](https://ci.appveyor.com/project/<nome-do-seu-usuario-ou-organização>/<nome-do-seu-repositório>/branch/master)
 ```
 
-Notice that we have two tags in this code snippet. Replace this information as follows:
+Perceba que temos duas tags neste trecho de código. Substitua estas informações da seguinte forma:
 
-- `<your-user-or-organisation-name>`: name of your user or organisation;
-- `<your-repository-name>`: name of your repository;
+- `<nome-do-seu-usuario-ou-organização>`: nome do seu usuário ou organização;
+- `<nome-do-seu-repositório>`: nome do seu repositório;
 
-For example, based on the example repository, our badge will have the following content.
+Por exemplo, baseado no repositório de exemplo, o nosso badge terá o seguinte conteúdo.
 
 ```
 [![Build Windows Status](https://ci.appveyor.com/api/projects/status/github/willmendesneto/build-checker?svg=true)](https://ci.appveyor.com/project/willmendesneto/build-checker/branch/master)
 ```
 
-As you might realise adding support for multiple operating systems and platforms is quite a simple task with Appveyor. The next steps in the book will be more focused on improving the automation of checking our code coverage.
+Como vocês puderam perceber adicionar suporte a vários sistemas operacionais e plataformas é uma tarefa bastante simples com o Appveyor. Os próximos passos do livro serão mais voltados ao quesito de melhorias na automação da checagem da nossa cobertura de código.
 
 
-## Code coverage for your code
+## Code coverage para o seu código
 
-Once our repository is communicated with continuous integration services, we will now add new tools. This time the focus is on the coverage of our code, checking if everything is being properly validated in an automated way even before we continue with the other development stages of our Nodebots.
-
-
-### Checking the code coverage of our project: Getting to know Istanbul
+Finalizada a comunicação do nosso repositório com os serviços de integração contínua, vamos agora adicionar novas ferramentas. Desta vez o foco é a cobertura de nosso código, checando se tudo está sendo validado corretamente de maneira automatizada antes mesmo de continuarmos com as outras etapas de desenvolvimento do nosso Nodebots.
 
 
-[Istanbul](http://gotwarlost.github.io/istanbul) is a NodeJS package for verifying code coverage in our repository using various parameters such as code-line coverage, functions, declarations, and [reverse engineering]( Https://en.wikipedia.org/wiki/Reverse engineering).
+### Checando a cobertura de código do nosso projeto: Conhecendo o Istanbul
 
-Let's then add this package to our project using the following command.
+
+O [istanbul](http://gotwarlost.github.io/istanbul) é um pacote NodeJS para verificar a cobertura de código no nosso repositório utilizando vários parâmetros, como cobertura por linha de código, funções, declarações e [engenharia reversa](https://pt.wikipedia.org/wiki/Engenharia_reversa).
+
+Vamos então adicionar este pacote ao nosso projeto utilizando o seguinte comando.
 
 ```bash
 $ npm install --save-dev istanbul
 ```
 
-To verify that it is integrated into our repository, simply type in our prompt/command line.
+Para verificarmos se ele está integrado no nosso repositório, basta digitarmos no nosso prompt/linha de comando.
 
 ```bash
 $ ./node_modules/.bin/istanbul help
 ```
 
-![Output from command `istanbul help`](images/image14.png)
+![Output do comando `istanbul help`](images/image14.png)
 
-As we previously integrated [MochaJS](https://mochajs.org/) into our repository when we created the project tests, we can simply type the following command at our command prompt.
+Como integramos anteriormente o [MochaJS](https://mochajs.org/) ao nosso repositório quando criamos os testes do projeto, podemos simplesmente digitar o seguinte comando no nosso prompt/linha de comando.
 
 ```bash
 $ ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha
 ```
 
-The return will be the same as the image below. You may notice that we now have some new information in the footer of test messages, such as percentages of rows, functions, branches, and declarations of methods, classes, or objects.
+O retorno será o mesmo da imagem abaixo. Podem reparar que agora temos algumas novas informações no rodapé das mensagens dos testes, tais com porcentagens de linhas, funções, branches e declarações de métodos, classes ou objetos.
 
-![Output of the `mocha` command](images/image08.png)
+![output do comando `mocha`](images/image08.png)
 
-Notice that we now have a new folder called coverage with some files and all this information listed in our command line. We will use them in the next steps for integration with the Coveralls service.
+Percebam que agora temos uma nova pasta chamada coverage com alguns arquivos e todas estas informações listadas na nossa linha de comando. Utilizaremos elas nos próximos passos para a integração com o serviço Coveralls.
 
 
-### Integrating Continuous Integration Server with Coveralls
+### Integrando o servidor de integração contínua com o coveralls
 
-With the code coverage information collected, we will then integrate a new service called [coveralls](https://coveralls.io/). It will be used to integrate code coverage data and make it visible by adding a badge in our `README.md`.
+Com as informações de cobertura de código coletadas, vamos então integrar um novo serviço chamado [coveralls](https://coveralls.io/). Ele será utilizado para integrar os dados de cobertura de código e deixar ele visível, adicionando um badge no nosso `README.md`.
 
-![Coveralls service website](images/image09.png)
+![Site do serviço Coveralls](images/image09.png)
 
-The login is very simple and you will have to enable integration with your Github. After this step, you will see a list with all your repositories registered in Github. Click the button to the left of your listed repository and wait for the message `"Off"` to become `"On"`.
+O login é bem simples e você terá que habilitar a integração com o seu Github. Após esta etapa você verá uma lista com todos os seus repositórios cadastrados no Github. Clique no botão ao lado esquerdo do seu repositório listado e espere a mensagem `"Off"` transformar-se em `"On"`.
 
-![Adding repositories](images/image31.png)
+![Adicionando repositórios](images/image31.png)
 
-Note that with the repository enabled, we now have a link to the details page. By clicking this link we will be directed to a page with all the initial information for the project setup in coveralls. For our solution, we will use the option to add coveralls information to the `.coveralls.yml` file.
+Perceba que, com o repositório ativado, temos agora um link para a página detalhes. Ao clicarmos neste link seremos direcionados para uma página com todas as informações iniciais para o setup do projeto no coveralls. Para a nossa solução usaremos a opção de adicionarmos a informação do coveralls no arquivo `.coveralls.yml`.
 
 ![](images/image20.png)
 
-We will then copy this content from the file option on the setup page and create the new file in our project. Within our local repository, we will type the following command via prompt/command line.
+Vamos então copiar este conteúdo da opção do arquivo na página de setup e criaremos o novo arquivo no nosso projeto. Dentro do nosso repositório local, vamos digitar o seguinte comando via prompt/linha de comando.
 
 ```bash
 $ touch .coveralls.yml
 ```
 
-We will open this file in our editor and we will add the content to this file. After this step, we will add the NodeJS package to our list of development dependencies to integrate the coveralls infrastructure into our project by typing the following command.
+Vamos abrir este arquivo no nosso editor e adicionaremos o conteúdo dentro deste arquivo. Após esta etapa adicionaremos o pacote NodeJS à nossa lista de dependências de desenvolvimento para integrarmos a infraestrutura do coveralls ao nosso projeto digitando o seguinte comando.
 
 ```bash
 $ npm install --save-dev coveralls
 ```
 
-Once we submit a new code, we can see that we have the percentage of code coverage information visible on the coveralls website in the area of our repository. With this we can follow all variations of code coverage, we create validations and more.
+Assim que enviarmos um novo código, podemos perceber que teremos as informações de porcentagem de cobertura de código visível no site do coveralls, na área do nosso repositório. Com isto podemos acompanhar todas as variações de cobertura de código, criamos validações e muito mais.
 
 ![](images/image43.png)
 
-After that, we can add a new badge with the code coverage information for our project in the `README.md` the file contained in the project repository. The badge pattern is quite simple:
+Depois disso podemos adicionar um novo badge com as informações do code coverage do nosso projeto no arquivo `README.md`, contido no repositório do projeto. O padrão do badge é algo bem simples:
 
 ```
 [![Coverage Status](https://coveralls.io/repos/<nome-do-seu-usuario-ou-organização>/<nome-do-seu-repositório>/badge.svg?branch=master)](https://coveralls.io/r/<nome-do-seu-usuario-ou-organização>/<nome-do-seu-repositório>?branch=master)
 ```
 
-Notice that we have two tags in this code snippet. Replace this information as follows:
+Perceba que temos duas tags neste trecho de código. Substitua estas informações da seguinte forma:
 
-- `<your-user-or-organisation-name>`: name of your user or organisation;
-- `<your-repository-name>`: name of your repository;
+- `<nome-do-seu-usuario-ou-organização>`: nome do seu usuário ou organização;
+- `<nome-do-seu-repositório>`: nome do seu repositório;
 
-For example, based on the example repository, our badge will have the following content.
+Por exemplo, baseado no repositório de exemplo, o nosso badge terá o seguinte conteúdo.
 
 ```
 [![Coverage Status](https://coveralls.io/repos/willmendesneto/build-checker/badge.svg?branch=master)](https://coveralls.io/r/willmendesneto/build-checker?branch=master)
 ```
 
-After adding and saving this code, the final result to be rendered will be something similar to the following image.
+Após adicionarmos e salvarmos este código, o resultado final a ser renderizado será algo similar ao da imagem a seguir.
 
 ![](images/image06.png)
 
-And with this, we conclude our integration with the coveralls service. This is just a simple example of one of the many features of this service and I strongly recommend that you read the [coveralls documentation](https://coveralls.zendesk.com/hc/en-us) so that you have a greater This service.
+E com isto concluímos a nossa integração com o serviço do coveralls. Este é só um exemplo simples de uma das várias funcionalidades deste serviço e recomendo fortemente que dêem uma lida na [documentação do coveralls](https://coveralls.zendesk.com/hc/en-us) para que vocês tenham uma maior sobre este serviço.
 
 
-### Checking code complexity with PlatoJS
+### Verificando complexidade do código com o PlatoJS
 
-PlatoJS is a NodeJS package that will help us in some validations of our nodebots code. It creates a report using some data generated through static analysis of the code of our project that shows us some information such as code complexity, maintenance difficulty, lines of code, possible implementation errors, among other relevant data.
+PlatoJS é um pacote NodeJS que nos ajudará em algumas validações do nosso código nodebots. Ele cria um relatório utilizando alguns dados gerados via análise estática do código do nosso projeto que nos mostra algumas informações como complexidade do código, dificuldade de manutenção, linhas de código, possiveis erros de implementação, dentre outros dados relevantes.
 
 
-> If you would like to know more about PlatoJS, please visit the repository in the [Github of the project](https://github.com/es-analysis/plato)
+> Caso queira saber mais sobre o PlatoJS, por favor acesse o repositório no [Github do projeto](https://github.com/es-analysis/plato)
 
-Its installation is very easy. Just type the command:
+Sua instalação é muito fácil. Basta digitarmos o comando:
 
 ```bash
 $ npm install --save-dev plato
 ```
 
-And after this step, the plato was installed locally as a development dependency in our `node_modules` folder of our project. Our next step is to add a new NPM command. Now we will have the `code-analysis` command that will trigger the plate to our project.
+E feito esta etapa, o plato foi instalado localmente como dependência de desenvolvimento na nossa pasta `node_modules` do nosso projeto. Nosso próximo passo é adicionar um novo comando NPM. Agora nós teremos o comando `code-analysis` que vai acionar o plato ao nosso projeto.
 
 ```json
 {
@@ -361,18 +361,18 @@ And after this step, the plato was installed locally as a development dependency
 }
 ```
 
-And to trigger the PlatoJS, just type:
+E para acionarmos o PlatoJS, basta digitarmos:
 
 ```bash
 $ npm run code-analysis
 ```
 
-And after this command will be created a folder of name `report` with the information of the analysis of our repository.
+E após este comando será criada uma pasta de nome `report` com as informações da análise do nosso repositório.
 
 ![](images/image39.png)
 
-Within this folder, we will have several files with the information returned from the PlatoJS analysis that we can see more details by accessing the `index.html` file in our browser.
+Dentro desta pasta teremos vários arquivos com as informações retornadas da análise do PlatoJS que podemos visualizar mais detalhes acessando o arquivo `index.html` no nosso navegador.
 
-This page will have information on each file and graphs showing data such as level of complexity and lines of code, as we can see in the figure below.
+Esta página terá informações de cada arquivo e gráficos mostrando dados como nível de complexidade e linhas de código, como podemos ver na figura abaixo.
 
-![Report page with information extracted by PlatoJS](images/image13.png)
+![Página de `report` com as informações extraídas pelo PlatoJS](images/image13.png)
