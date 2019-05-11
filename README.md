@@ -1,19 +1,23 @@
-# Nodebots - Javascript e robótica no mundo real 🤖
+# 🤖 Nodebots - Javascript e robótica no mundo real
 
 
 Leanpub website: https://leanpub.com/nodebots-javascript-e-robotica-no-mundo-real
 
 Quer saber como utilizar Javascript para ler sensores e criar excelentes aplicações com Nodebots? Quer ainda aprender como criar testes performáticos e boas práticas de arquitetura para aplicações complexas? Então este livro é para você!
 
-## Repositório da versão EN
+## 🇺🇸 Versão EN no Leanpub
 
-Confira a versão EN do livro clicando [neste link](https://github.com/willmendesneto/nodebots-javascript-and-robotic-in-a-real-world-en)
+Confira a versão EN do livro publicado no site Leanpub clicando [neste link](http://bit.ly/nodebots-book-en)
+
+## 🇺🇸 Repositório da versão EN
+
+Confira a versão EN deste repositório [neste link](http://bit.ly/nodebots-book-en-github)
 
 Este livro é direcionado a todos que desejam dar os primeiros passos sobre Nodebots ou que tem interesse em aprofundar-se em alguns conceitos que são pouco demonstrados sobre o assunto.
 
 Serão mostrados conteúdos com sensores simples e de baixo custo, porém relacionando os sensores com integrações reais de uma aplicação nodebots, como integração entre API's externas a partir de eventos leitura de alguns dados de sensores, além de boas práticas em como utilizar testes unitários automatizados de maneira performática.
 
-## Tópicos
+## 📝 Tópicos
 
 ### Nodebots e microcontroladores
 
@@ -42,4 +46,11 @@ Serão mostrados conteúdos com sensores simples e de baixo custo, porém relaci
 - Verificando complexidade do código com o PlatoJS
 
 E muito mais em alguns projetos que utilizam conceitos importantes do desenvolvimento de software, mostrando com idéias simples e baratas como integrar Nodebots no nosso dia-a-dia pode ser algo simples e prático!
+
+
+## ✍ Autor
+
+**Wilson Mendes (willmendesneto)**
++ <https://twitter.com/willmendesneto>
++ <http://github.com/willmendesneto>
 
