@@ -1,6 +1,6 @@
 # Agradecimentos
 
-Gostaria de agradecer inicialmente a minha mãe (que fez o papel de mãe e pai por muitas vezes), essa pessoa maravilhosa que me ensinou muitos dos valores e que levo comigo até hoje, sendo o meu exemplo até hoje. Marco Marocci e Robson Mário, que são como pais para mim e ao meu irmão Leonardo Araújo que sempre esteve comigo quando eu precisei e que me deu também mais 2 irmãos, Ramon Pombo e Matheus Pombo.
+Gostaria de agradecer inicialmente a minha mãe (que fez o papel de mãe e pai por muitas vezes), essa pessoa maravilhosa que me ensinou muitos dos valores e que levo comigo até hoje, sendo o meu exemplo até hoje e ao meu irmão Leonardo Araújo que sempre esteve comigo quando eu precisei.
 
 Gostaria de agradecer a minha mulher, Nilana Rocha, por todo apoio dado. Ela foi um dos fatores cruciais e com certeza sem ela este livro não seria uma realidade. Muito obrigado por tudo.
 
