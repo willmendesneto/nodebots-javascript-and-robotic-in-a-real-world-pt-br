@@ -56,13 +56,13 @@ Sua instalação é bem simples. Você pode instalar localmente via Curl ou Wget
 Curl:
 
 ```bash
-$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
+$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 ```
 
 Wget:
 
 ```bash
-$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash
+$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 ```
 
 > Pacotes como CURL e WGET podem não estar instalados em seu sistema operacional por padrão. Caso precise, verifique a melhor forma de instalação para o seu sistema operacional ou acesse o repositório do NVM no Github para verificar os passos de instalação ou possíveis soluções de problema.
@@ -77,13 +77,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 ```
 
-Com isso, assim que você recarregar o seu terminal o NVM estará disponível. Agora basta instalar a versão do NodeJS de sua preferência. Neste livro utilizaremos a versão 5.3.0.
+Com isso, assim que você recarregar o seu terminal o NVM estará disponível. Agora basta instalar a versão do NodeJS de sua preferência. Neste livro utilizaremos a versão 10.9.0.
 
 
 ```bash
-$ nvm install 5.3.0
-$ nvm use 5.3.0
-$ nvm alias default 5.3.0
+$ nvm install 10.9.0
+$ nvm use 10.9.0
+$ nvm alias default 10.9.0
 ```
 
 Após estes comandos o NVM fará o download da versão específica do NodeJS, deixando-a acessível via terminal. Para verificar se o comando foi concluído com sucesso, digite o comando:
@@ -92,7 +92,7 @@ Após estes comandos o NVM fará o download da versão específica do NodeJS, de
 $ node -v
 ```
 
-O resultado deve ser `v5.3.0`. Se este foi o retorno do seu comando, está tudo pronto para os nossos próximos passos. Caso tenha algum problema verifique se o código de carregamento do NVM foi inserido no arquivo de configuração do seu terminal e inicie outra instância do seu terminal.
+O resultado deve ser `v10.9.0`. Se este foi o retorno do seu comando, está tudo pronto para os nossos próximos passos. Caso tenha algum problema verifique se o código de carregamento do NVM foi inserido no arquivo de configuração do seu terminal e inicie outra instância do seu terminal.
 
 
 Foi criado um arquivo com os comandos contidos neste tópico para a instalação do NVM e o Node com a versão utilizada neste livro. Caso queira utilizá-lo, por favor faça o [download do arquivo nvm-install.sh](https://gist.github.com/willmendesneto/4c951413bacbb8850837a53bcdada30d).
