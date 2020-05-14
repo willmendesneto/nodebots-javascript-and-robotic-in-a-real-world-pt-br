@@ -142,7 +142,7 @@ Adicionaremos a versão utilizada do NodeJS no campo environment do nosso arquiv
 ...
 environment:
   matrix:
-    - nodejs_version: "12.16.2"
+    - nodejs_version: "12"
 ...
 ```
 
@@ -195,7 +195,7 @@ init:
   - git config --global core.autocrlf true
 environment:
   matrix:
-    - nodejs_version: "12.16.2"
+    - nodejs_version: "12"
 platform:
   - x86
   - x64
