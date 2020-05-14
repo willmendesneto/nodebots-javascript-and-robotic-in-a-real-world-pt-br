@@ -305,7 +305,7 @@ Neste exemplo chamaremos este método com a opção `ready`, que verifica quando
 
 ```javascript
 ...
-board.on('ready', function() {
+board.on('ready', () => {
   console.log('Hello World!');
 });
 ...
@@ -317,7 +317,7 @@ E o conteúdo final do nosso `index.js` ficou bem enxuto, como podem ver abaixo.
 const five = require('johnny-five');
 const board = new five.Board();
 
-board.on('ready', function () {
+board.on('ready', () => {
   console.log('Hello World!');
 });
 ```
