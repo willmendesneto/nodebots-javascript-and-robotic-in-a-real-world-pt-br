@@ -87,7 +87,7 @@ O nosso primeiro código funcional será mais ou menos desta forma.
 const five = require('johnny-five');
 const board = new five.Board();
 
-board.on('ready', function () {
+board.on('ready', () => {
   const ledSuccess = new five.Led(12);
   const ledError = new five.Led(10);
 
@@ -215,7 +215,7 @@ if(body.indexOf('Failure') !== -1) {
 Com a requisição criada, vamos somente criar um intervalo entre cada requisição, utilizando um simples `setInterval`. Vamos utilizar um tempo de 500 milisegundos para validação do código, mas este valor pode ser alterado para o que for ideal ao seu caso.
 
 ```javascript
-setInterval(function(){
+setInterval(() => {
   request(CI_CCTRACKER_URL, function(error, response, body) {
     ..
   });
@@ -241,12 +241,12 @@ const CI_CCTRACKER_URL = [
   'cctray.xml',
 ].join('/');
 
-board.on('ready', function () {
+board.on('ready', () => {
   const ledSuccess = new five.Led(12);
   const ledError = new five.Led(10);
 
-  setInterval(function () {
-    request(CI_CCTRACKER_URL, function (error, response, body) {
+  setInterval(() => {
+    request(CI_CCTRACKER_URL, (e =>rror, response, body) {
       if (error) {
         console.log('Something is wrong in our CI/CD =(');
         return;
@@ -295,12 +295,12 @@ const five = require('johnny-five');
 const CONFIG = require('./configuration');
 const board = new five.Board();
 
-board.on('ready', function() {
+board.on('ready', () => {
 
   const ledSuccess = new five.Led(CONFIG.LED.SUCCESS);
   const ledError = new five.Led(CONFIG.LED.ERROR);
 
-  setInterval(function(){
+  setInterval(() => {
     request(CONFIG.CI_CCTRACKER_URL, function(error, response, body)
     {
       ...
@@ -321,20 +321,20 @@ const request = require('request');
 const five = require('johnny-five');
 
 let intervalId = null;
-function BuildChecker() {
+Bu =>ildChecker() {
   this.ledSuccess = new five.Led(CONFIG.LED.SUCCESS);
   this.ledError = new five.Led(CONFIG.LED.ERROR);
 }
 
-BuildChecker.prototype.stopPolling = function () {
+BuildChecker.prototype.stopPolling = () => {
   clearInterval(intervalId);
 };
 
-BuildChecker.prototype.startPolling = function () {
+BuildChecker.prototype.startPolling = () => {
   const self = this;
 
-  intervalId = setInterval(function () {
-    request.get(CONFIG.CI_CCTRACKER_URL, function (error, response, body) {
+  intervalId = setInterval(() => {
+    request.get(CONFIG.CI_CCTRACKER_URL, (e =>rror, response, body) {
       if (error) {
         console.log('Somethink is wrong with your CI =(');
         return;
@@ -363,7 +363,7 @@ const BuildChecker = require('./build-checker');
 const five = require('johnny-five');
 const board = new five.Board();
 
-board.on('ready', function () {
+board.on('ready', () => {
   buildChecker = new BuildChecker();
   buildChecker.startPolling();
 });
@@ -432,8 +432,8 @@ Uma explicação rápida sobre as informações de configuração utilizadas:
 Criaremos um arquivo com o nome `test/index.js` com uma asserção bastante simples.
 
 ```javascript
-describe('Test validation', function () {
-  it('1 + 1 = 2', function () {
+describe('Test validation', () => {
+  it('1 + 1 = 2', () => {
     (1 + 1).should.be.equal(2);
   });
 });
@@ -505,16 +505,16 @@ const five = require('johnny-five');
 const request = require('request');
 const sinon = require('sinon');
 
-describe('BuildChecker', function () {
-  beforeEach(function () {
+describe('BuildChecker', () => {
+  beforeEach(() => {
     buildChecker = new BuildChecker();
   });
 
-  it('should have the led success port configured', function () {
+  it('should have the led success port configured', () => {
     (buildChecker.ledSuccess instanceof five.Led).should.be.equal(true);
   });
 
-  it('should have the led error port configured', function () {
+  it('should have the led error port configured', () => {
     (buildChecker.ledError instanceof five.Led).should.be.equal(true);
   });
 });
@@ -524,13 +524,13 @@ Agora vamos validar quando paramos o nosso polling. Vamos usar agora o método s
 
 ```javascript
 ...
-describe('#stopPolling', function(){
-  beforeEach(function(){
+describe('#stopPolling', () => {
+  beforeEach(() => {
     sinon.spy(global, 'clearInterval');
     buildChecker.stopPolling();
   });
 
-  it('should remove interval', function(){
+  it('should remove interval', () => {
     global.clearInterval.calledOnce.should.be.true;
   });
 });
@@ -570,7 +570,7 @@ Um ponto importante nos nossos testes é lembrar de restaurar todas as informaç
 
 ```javascript
 ...
-afterEach(function(){
+afterEach(() => {
   request.get.restore();
   clock.restore();
 });
@@ -592,46 +592,46 @@ const successResponseCI = fs.readFileSync(__dirname + '/fixtures/success.xml', '
 const errorResponseCI = fs.readFileSync(__dirname + '/fixtures/error.xml', 'utf8');
 let clock = null;
 
-describe('BuildChecker', function () {
-  beforeEach(function () {
+describe('BuildChecker', () => {
+  beforeEach(() => {
     buildChecker = new BuildChecker();
   });
 
-  it('should have the led success port configured', function () {
+  it('should have the led success port configured', () => {
     (buildChecker.ledSuccess instanceof five.Led).should.be.equal(true);
   });
 
-  it('should have the led error port configured', function () {
+  it('should have the led error port configured', () => {
     (buildChecker.ledError instanceof five.Led).should.be.equal(true);
   });
 
-  describe('#stopPolling', function () {
-    beforeEach(function () {
+  describe('#stopPolling', () => {
+    beforeEach(() => {
       sinon.spy(global, 'clearInterval');
       buildChecker.stopPolling();
     });
 
-    it('should remove interval', function () {
+    it('should remove interval', () => {
       global.clearInterval.calledOnce.should.be.true;
     });
   });
 
-  describe('#startPolling', function () {
-    beforeEach(function () {
+  describe('#startPolling', () => {
+    beforeEach(() => {
       sinon.spy(global, 'setInterval');
       buildChecker.startPolling();
     });
 
-    afterEach(function () {
+    afterEach(() => {
       global.setInterval.restore();
     });
 
-    it('should creates polling', function () {
+    it('should creates polling', () => {
       global.setInterval.calledOnce.should.be.true;
     });
 
-    describe('When the CI server send success response', function () {
-      beforeEach(function () {
+    describe('When the CI server send success response', () => {
+      beforeEach(() => {
         clock = sinon.useFakeTimers();
         sinon.stub(request, 'get').yields(null, null, successResponseCI);
         sinon.spy(buildChecker.ledSuccess, 'on');
@@ -640,22 +640,22 @@ describe('BuildChecker', function () {
         clock.tick(CONFIG.INTERVAL);
       });
 
-      afterEach(function () {
+      afterEach(() => {
         request.get.restore();
         clock.restore();
       });
 
-      it('should turn on the success led', function () {
+      it('should turn on the success led', () => {
         buildChecker.ledSuccess.on.calledOnce.should.be.true;
       });
 
-      it('should turn off the error led', function () {
+      it('should turn off the error led', () => {
         buildChecker.ledError.off.calledOnce.should.be.true;
       });
     });
 
-    describe('When the CI server send error response', function () {
-      beforeEach(function () {
+    describe('When the CI server send error response', () => {
+      beforeEach(() => {
         clock = sinon.useFakeTimers();
         sinon.stub(request, 'get').yields(null, null, errorResponseCI);
         sinon.spy(buildChecker.ledError, 'on');
@@ -664,16 +664,16 @@ describe('BuildChecker', function () {
         clock.tick(CONFIG.INTERVAL);
       });
 
-      afterEach(function () {
+      afterEach(() => {
         request.get.restore();
         clock.restore();
       });
 
-      it('should turn off the success led', function () {
+      it('should turn off the success led', () => {
         buildChecker.ledSuccess.off.calledOnce.should.be.true;
       });
 
-      it('should turn on the error led', function () {
+      it('should turn on the error led', () => {
         buildChecker.ledError.on.calledOnce.should.be.true;
       });
     });
