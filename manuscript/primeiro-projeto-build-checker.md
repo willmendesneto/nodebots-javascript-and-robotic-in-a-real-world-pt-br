@@ -6,13 +6,11 @@ Em algumas apresentações percebi que este termo não é conhecido por muitas p
 
 Build pipeline é um conceito que foi construído em meados de 2005 e é baseado na ideia de paralelização de tarefas, separando cada etapa em pequenos critérios de aceitação para a aplicação. Vale lembrar que esses passos podem automáticos ou manuais.
 
-
 ## Criando um Build Checker
 
 Sempre que começamos o contato com o Arduino, por exemplo, fazemos o exemplo de piscas as leds, comumente conhecido como blink.
 
 Neste exemplo mostrarei uma forma mais atrativa de abordar este exemplo para o nosso cotidiano, baseado em modelos como [Hubot](https://hubot.github.com/) e [Retaliation](https://github.com/codedance/Retaliation) para checarmos a nossa build pipeline e averiguarmos a saúde de nossa aplicação utilizando Arduino + NodeJS + Johnny-Five em uma introdução a NodeBots.
-
 
 ## Anatomia de um verificador de build
 
@@ -20,13 +18,12 @@ O projeto foi baseado no [CCmenu](http://ccmenu.org/), projeto criado pelo Thoug
 
 No nosso caso passamos a idéia para algo físico, utilizando open hardware e NodeJS. Nossa aplicação consumirá um XML com as informações retornadas pelo Travis-CI. A partir destes dados checamos o estado atual da aplicação e o retornaremos utilizando alguns artifícios como Arduino e LEDs para avisar ao nosso time de que algo de errado aconteceu com o nosso build e devemos corrigir o quanto antes.
 
-
 ## Material necessário
 
 Para este projeto utilizaremos:
 
 - 1 Protoboard: Uma protoboard nada mais é que uma placa com furos e conexões condutoras para montagem de circuitos elétricos experimentais, sem a necessidade de soldagem. Um protoboard simples custa entre R$ 5,00 a R$ 10,00 e pode ser encontrado em qualquer loja de elétrica;
-- 2 LEDS (*light-emitting diode*): 1 vermelha para sinalizar o build quebrado e 1 verde para sinalizar o que o build foi concluído com sucesso. Uma LED custa menos de R$ 0,50 e pode ser encontrada em qualquer loja de elétrica;
+- 2 LEDS (_light-emitting diode_): 1 vermelha para sinalizar o build quebrado e 1 verde para sinalizar o que o build foi concluído com sucesso. Uma LED custa menos de R\$ 0,50 e pode ser encontrada em qualquer loja de elétrica;
 - Arduino com 2 portas GND (ground);
 
 ![Material necessário para o Build Checker](images/image47.png)
@@ -40,12 +37,9 @@ Agora basta plugarmos as 2 LEDS, vinculando da seguinte forma:
 
 A imagem a seguir ilustra a montagem dos componentes com o arduino.
 
-
 ![Conectando o Arduino: portas e LEDS](images/image12.png)
 
-
 ### Controlando a LED
-
 
 Conhecendo os componentes que utilizaremos, vamos agora ao nosso código inicial que vai controlar a nossa LED. Primeiramente criaremos a pasta `src`, onde ficará o código de nossa aplicação.
 
@@ -74,8 +68,8 @@ No arquivo `index.js` e importaremos o pacote Johnny-five utilizando o comando `
 
 ```javascript
 ...
-var five = require('johnny-five');
-var board = new five.Board();
+const five = require('johnny-five');
+const board = new five.Board();
 ...
 ```
 
@@ -83,19 +77,19 @@ Para a primeira atividade com o componente utilizaremos uma nova classe do Johnn
 
 ```javascript
 ...
-var led = new five.Led(12);
+const led = new five.Led(12);
 ...
 ```
 
 O nosso primeiro código funcional será mais ou menos desta forma.
 
 ```javascript
-var five = require('johnny-five');
-var board = new five.Board();
+const five = require('johnny-five');
+const board = new five.Board();
 
-board.on('ready', function() {
-  var ledSuccess = new five.Led(12);
-  var ledError = new five.Led(10);
+board.on('ready', function () {
+  const ledSuccess = new five.Led(12);
+  const ledError = new five.Led(10);
 
   ledSuccess.blink();
   ledError.blink();
@@ -111,7 +105,6 @@ $ node src/index.js
 Após este comando o nosso prompt/linha de comando está mostrando que o comando rodou com sucesso e o resultado será que as nossas duas LEDs estarão piscando.
 
 Bastante simples, não é mesmo? No próximo tópico vamos pensar um pouco mais sobre a nossa arquitetura.
-
 
 ## Criando a requisição das informações de build no CI/CD
 
@@ -150,7 +143,6 @@ O campo `lastBuildStatus` pode conter:
 - `Pending`: a tarefa está acontecendo neste exato momento no servidor;
 - `Exception` e `Unknown`: algo inesperado ocorreu com a atual tarefa no servidor. Os motivos são dos mais diversos, como o servidor teve uma oscilação no meio da tarefa ou ele nunca rodou uma determinada tarefa ainda, por isso não possui as informações;
 
-
 Vamos agora adicionar a nossa URL que contém as informações do CCTray do nosso projeto e criar com a requisição destas informações. Para isso vamos adicionar o pacote NodeJS [request](https://github.com/request/request), um cliente HTTP que foi desenvolvido com o intuito de facilitar a criação de requisições HTTP ou HTTPS. Para adicionarmos o novo pacotes vamos digitar o seguinte comando.
 
 ```bash
@@ -163,9 +155,9 @@ Agora vamos adicionar o pacote no nosso projeto e criarmos a requisição usando
 
 ```javascript
 ...
-var request = require('request');
-var five = require('johnny-five');
-var board = new five.Board();
+const request = require('request');
+const five = require('johnny-five');
+const board = new five.Board();
 ...
 ```
 
@@ -175,17 +167,17 @@ E vamos adicionar o endereço co CCTray que copiamos do nosso servidor de integr
 // Para fins didáticos este código está utilizando este formato
 // Por questões de recurso computacional utilize a URL como string
 // ao invés da manipulação do Array no projeto final
-var CI_CCTRACKER_URL = [
+const CI_CCTRACKER_URL = [
   'https://snap-ci.com',
   'willmendesneto',
   'generator-reactor',
   'branch',
   'master',
-  'cctray.xml'
+  'cctray.xml',
 ].join('/');
 ```
 
-Vamos explicar um pouco sobre o *callback* do RequestJS. Ele retorna 3 parâmetros:
+Vamos explicar um pouco sobre o _callback_ do RequestJS. Ele retorna 3 parâmetros:
 
 - `error`: um objeto com as informações do erro que aconteceu. Caso a requisição não retorne nenhum erro ele possui o valor padrão `null`;
 - `response`: objeto com as informações do response da requisição;
@@ -233,35 +225,34 @@ setInterval(function(){
 E o conteúdo final do nosso `src/index.js` ficou da seguinte maneira:
 
 ```javascript
-var request = require('request');
-var five = require('johnny-five');
-var board = new five.Board();
+const request = require('request');
+const five = require('johnny-five');
+const board = new five.Board();
 
 // Para fins didáticos este código está utilizando este formato
 // Por questões de recurso computacional utilize a URL como string
 // ao invés da manipulação do Array no projeto final
-var CI_CCTRACKER_URL = [
+const CI_CCTRACKER_URL = [
   'https://snap-ci.com',
   'willmendesneto',
   'generator-reactor',
   'branch',
   'master',
-  'cctray.xml'
+  'cctray.xml',
 ].join('/');
 
-board.on('ready', function() {
+board.on('ready', function () {
+  const ledSuccess = new five.Led(12);
+  const ledError = new five.Led(10);
 
-  var ledSuccess = new five.Led(12);
-  var ledError = new five.Led(10);
-
-  setInterval(function(){
-    request(CI_CCTRACKER_URL, function(error, response, body) {
+  setInterval(function () {
+    request(CI_CCTRACKER_URL, function (error, response, body) {
       if (error) {
         console.log('Something is wrong in our CI/CD =(');
         return;
       }
 
-      if(body.indexOf('Failure') !== -1) {
+      if (body.indexOf('Failure') !== -1) {
         console.log('Your CI/CD is broken! Fix it!!!!');
         ledSuccess.off();
         ledError.on();
@@ -270,14 +261,12 @@ board.on('ready', function() {
         ledSuccess.on();
         ledError.off();
       }
-
     });
   }, 500);
 });
 ```
 
-Ele consultará os dados em um intervalo previamente configurado e verifica o estado atual do build, baseado nas informações de todas as pipelines. Caso não haja a palavra *"Failure"* no response da requisição, algo de errado aconteceu e o nosso *build checker* irá acender a luz vermelha, caso contrário a luz verde continua acesa, sinalizando que está tudo ok.
-
+Ele consultará os dados em um intervalo previamente configurado e verifica o estado atual do build, baseado nas informações de todas as pipelines. Caso não haja a palavra _"Failure"_ no response da requisição, algo de errado aconteceu e o nosso _build checker_ irá acender a luz vermelha, caso contrário a luz verde continua acesa, sinalizando que está tudo ok.
 
 ## Ajustando a arquitetura de nossa aplicação
 
@@ -292,24 +281,24 @@ O conteúdo inicial deste ficará arquivo será:
 module.exports = {
   LED: {
     SUCCESS: 12,
-    ERROR: 10
+    ERROR: 10,
   },
   CI_CCTRACKER_URL: 'https://snap-ci.com/willmendesneto/generator-reactor/branch/master/cctray.xml',
-  INTERVAL: 1000
+  INTERVAL: 1000,
 };
 ```
 
 Agora vamos alterar o nosso `src/index.js` para utilizar o nosso arquivo com as configurações padrão da nossa aplicação
 
 ```javascript
-var five = require('johnny-five');
-var CONFIG = require('./configuration');
-var board = new five.Board();
+const five = require('johnny-five');
+const CONFIG = require('./configuration');
+const board = new five.Board();
 
 board.on('ready', function() {
 
-  var ledSuccess = new five.Led(CONFIG.LED.SUCCESS);
-  var ledError = new five.Led(CONFIG.LED.ERROR);
+  const ledSuccess = new five.Led(CONFIG.LED.SUCCESS);
+  const ledError = new five.Led(CONFIG.LED.ERROR);
 
   setInterval(function(){
     request(CONFIG.CI_CCTRACKER_URL, function(error, response, body)
@@ -322,36 +311,36 @@ board.on('ready', function() {
 
 O nosso código está começando a ficar um pouco mais expressivo, concordam? Mas ainda tem algo que podemos melhorar? Claro que sim!
 
-Estamos falando sobre o *build checker*, mas não temos nenhuma abstração para esta operação. A idéia é que o nosso código final seja somente uma inicialização do nosso app, com todas as informações relevantes dentro desta abstração.
+Estamos falando sobre o _build checker_, mas não temos nenhuma abstração para esta operação. A idéia é que o nosso código final seja somente uma inicialização do nosso app, com todas as informações relevantes dentro desta abstração.
 
 Vamos então criar o nosso arquivo com as abstrações de informações de LED e da requisição HTTP, acessando as configurações.
 
 ```javascript
-var CONFIG = require('./configuration');
-var request = require('request');
-var five = require('johnny-five');
+const CONFIG = require('./configuration');
+const request = require('request');
+const five = require('johnny-five');
 
-intervalId = null;
+let intervalId = null;
 function BuildChecker() {
   this.ledSuccess = new five.Led(CONFIG.LED.SUCCESS);
   this.ledError = new five.Led(CONFIG.LED.ERROR);
-};
+}
 
-BuildChecker.prototype.stopPolling = function() {
+BuildChecker.prototype.stopPolling = function () {
   clearInterval(intervalId);
 };
 
-BuildChecker.prototype.startPolling = function() {
-  var self = this;
+BuildChecker.prototype.startPolling = function () {
+  const self = this;
 
-  intervalId = setInterval(function(){
-    request.get(CONFIG.CI_CCTRACKER_URL, function(error, response, body) {
+  intervalId = setInterval(function () {
+    request.get(CONFIG.CI_CCTRACKER_URL, function (error, response, body) {
       if (error) {
         console.log('Somethink is wrong with your CI =(');
         return;
       }
 
-      if(body.indexOf('Success') !== -1) {
+      if (body.indexOf('Success') !== -1) {
         console.log('Your CI is ok!');
         self.ledSuccess.on();
         self.ledError.off();
@@ -360,7 +349,6 @@ BuildChecker.prototype.startPolling = function() {
         self.ledSuccess.off();
         self.ledError.on();
       }
-
     });
   }, CONFIG.INTERVAL);
 };
@@ -371,11 +359,11 @@ module.exports = BuildChecker;
 E o nosso arquivo `src/index.js` irá somente invocar e iniciar o nosso código para que as LEDs comecem a piscar.
 
 ```javascript
-var BuildChecker = require('./build-checker');
-var five = require('johnny-five');
-var board = new five.Board();
+const BuildChecker = require('./build-checker');
+const five = require('johnny-five');
+const board = new five.Board();
 
-board.on('ready', function() {
+board.on('ready', function () {
   buildChecker = new BuildChecker();
   buildChecker.startPolling();
 });
@@ -383,9 +371,7 @@ board.on('ready', function() {
 
 Finalizando esta separação de conceitos, melhoramos a legibilidade, manutenibilidade e várias outra variantes de nossa aplicação. Vale ressaltar que esta é uma boa prática e que, ao decorrer do livro, sempre estaremos pensando em melhorias do nosso código final.
 
-
 ## Criando testes unitários para o build checker
-
 
 Desta vez algo simples, mas sem uma boa informação sobre ele é como adicionar testes de unidade em aplicativos Nodebots. Teste unitário não é algo novo, mas você não encontra conteúdo sobre este tema em Arduino, robôs e aplicativos de hardware aberto facilmente, por isto abordaremos um pouco sobre este tópico neste livro.
 
@@ -405,7 +391,7 @@ Vamos agora criar uma pasta para os nossos testes unitários com o nome `test`.
 $ mkdir test
 ```
 
-Os testes unitários utilizarão o framework de teste [MochaJS](https://mochajs.org), [SinonJS](http://sinonjs.org) para *spies*, *stubs* e *mocks* e [ShouldJS](https://shouldjs.github.io) para as *assertions*. Vamos então instalar estes pacotes como dependência de desenvolvimento do projeto.
+Os testes unitários utilizarão o framework de teste [MochaJS](https://mochajs.org), [SinonJS](http://sinonjs.org) para _spies_, _stubs_ e _mocks_ e [ShouldJS](https://shouldjs.github.io) para as _assertions_. Vamos então instalar estes pacotes como dependência de desenvolvimento do projeto.
 
 ```bash
 $ npm install --save-dev mocha sinon should
@@ -415,13 +401,13 @@ Um pacote NodeJS fundamental nesta etapa é o [mock-Firmata](https://github.com/
 
 ```javascript
 require('should');
-var mockFirmata = require('mock-firmata');
-var five = require('johnny-five');
+const mockFirmata = require('mock-firmata');
+const five = require('johnny-five');
 
-var board = new five.Board({
+const board = new five.Board({
   io: new mockFirmata.Firmata(),
   debug: false,
-  repl: false
+  repl: false,
 });
 ```
 
@@ -437,17 +423,17 @@ Vamos então adicionar um teste simples para checar a integração dos nossos te
 
 Uma explicação rápida sobre as informações de configuração utilizadas:
 
-`--reporter spec`: Tipo de *reporter* utilizado para mostrar as mensagens das informações dos testes;
+`--reporter spec`: Tipo de _reporter_ utilizado para mostrar as mensagens das informações dos testes;
 `--recursive`: flag para identificar que os testes devem rodar de maneira recursiva dentro da pasta;
-`--require` test/spec-helper.js: arquivo de *setup* a ser carregado antes de rodarmos os testes unitários;
+`--require` test/spec-helper.js: arquivo de _setup_ a ser carregado antes de rodarmos os testes unitários;
 `--slow 1000`: Tempo máximo em milissegundos de tolerância entre os testes. Caso ultrapasse este tempo será mostrado o tempo total daquele teste com uma cor diferenciada para que possamos efetuar as devidas alterações;
 `--timeout 5000`: Tempo máximo em milissegundos de tolerância para a finalização de cada asserção. Caso ultrapasse este tempo os nossos testes retornarão com uma mensagem de erro;
 
 Criaremos um arquivo com o nome `test/index.js` com uma asserção bastante simples.
 
 ```javascript
-describe('Test validation', function() {
-  it('1 + 1 = 2', function(){
+describe('Test validation', function () {
+  it('1 + 1 = 2', function () {
     (1 + 1).should.be.equal(2);
   });
 });
@@ -468,13 +454,13 @@ Veremos então estas informações no nosso prompt/terminal e o nosso setup inic
 Agora sim, vamos criar os cenários para os nossos testes. Vamos então definir os cenários que devemos cobrir nos nossos testes:
 
 - Informações iniciais quando criamos a instância do `BuildChecker`;
-- Quando iniciamos o *polling* e o servidor envia informações de um build finalizado com sucesso;
-- Quando iniciamos o *polling* e o servidor envia informações de um build finalizado com falhas;
-- Quando paramos o nosso *polling* e não faremos mais requisições de dados para o nosso servidor;
+- Quando iniciamos o _polling_ e o servidor envia informações de um build finalizado com sucesso;
+- Quando iniciamos o _polling_ e o servidor envia informações de um build finalizado com falhas;
+- Quando paramos o nosso _polling_ e não faremos mais requisições de dados para o nosso servidor;
 
-Uma forma de validarmos quando o build checker deve piscar o LED é criarmos um stub para a solicitação utilizando o node-request para validar a resposta por tipos esperados (`success` e` error`) e usaremos alguns spies para os LEDs.
+Uma forma de validarmos quando o build checker deve piscar o LED é criarmos um stub para a solicitação utilizando o node-request para validar a resposta por tipos esperados (`success` e`error`) e usaremos alguns spies para os LEDs.
 
-Para esta simulação vamos criar algumas *fixtures* com o modelo das respostas do servidor para sucesso e erro. Vamos então criar a nossa pasta com os dados dentro de nossa pasta que contém os nossos testes.
+Para esta simulação vamos criar algumas _fixtures_ com o modelo das respostas do servidor para sucesso e erro. Vamos então criar a nossa pasta com os dados dentro de nossa pasta que contém os nossos testes.
 
 ```bash
 $ mkdir test/fixtures
@@ -514,25 +500,23 @@ Vamos então criar o cenário para validar o nosso código. Algumas coisas devem
 Vamos então explicar mais sobre o conteúdo deste arquivo e o porquê de cada teste. Criamos os testes da instância do nosso `BuildChecker` e seus atributos iniciais.
 
 ```javascript
-var BuildChecker = require('../src/build-checker');
-var five = require('johnny-five');
-var request = require('request');
-var sinon = require('sinon');
+const BuildChecker = require('../src/build-checker');
+const five = require('johnny-five');
+const request = require('request');
+const sinon = require('sinon');
 
-describe('BuildChecker', function() {
-
-  beforeEach(function(){
+describe('BuildChecker', function () {
+  beforeEach(function () {
     buildChecker = new BuildChecker();
   });
 
-  it('should have the led success port configured', function(){
+  it('should have the led success port configured', function () {
     (buildChecker.ledSuccess instanceof five.Led).should.be.equal(true);
   });
 
-  it('should have the led error port configured', function(){
+  it('should have the led error port configured', function () {
     (buildChecker.ledError instanceof five.Led).should.be.equal(true);
   });
-
 });
 ```
 
@@ -553,13 +537,13 @@ describe('#stopPolling', function(){
 ...
 ```
 
-E agora os cenários do servidor respondendo com sucesso e falha. Para isto vamos atribuir os nossos dados da pasta *fixtures* em variáveis.
+E agora os cenários do servidor respondendo com sucesso e falha. Para isto vamos atribuir os nossos dados da pasta _fixtures_ em variáveis.
 
 ```javascript
 ...
-var fs = require('fs');
-var successResponseCI = fs.readFileSync(__dirname + '/fixtures/success.xml', 'utf8');
-var errorResponseCI = fs.readFileSync(__dirname + '/fixtures/error.xml', 'utf8');
+const fs = require('fs');
+const successResponseCI = fs.readFileSync(__dirname + '/fixtures/success.xml', 'utf8');
+const errorResponseCI = fs.readFileSync(__dirname + '/fixtures/error.xml', 'utf8');
 ...
 ```
 
@@ -598,57 +582,56 @@ Com base nos nossos cenários de teste, este é o conteúdo do teste do nosso ar
 ```javascript
 // test/build-checker.js
 
-var BuildChecker = require('../src/build-checker');
-var CONFIG = require('../src/configuration');
-var five = require('johnny-five');
-var request = require('request');
-var sinon = require('sinon');
-var fs = require('fs');
-var successResponseCI = fs.readFileSync(__dirname + '/fixtures/success.xml', 'utf8');
-var errorResponseCI = fs.readFileSync(__dirname + '/fixtures/error.xml', 'utf8');
-var clock = null;
+const BuildChecker = require('../src/build-checker');
+const CONFIG = require('../src/configuration');
+const five = require('johnny-five');
+const request = require('request');
+const sinon = require('sinon');
+const fs = require('fs');
+const successResponseCI = fs.readFileSync(__dirname + '/fixtures/success.xml', 'utf8');
+const errorResponseCI = fs.readFileSync(__dirname + '/fixtures/error.xml', 'utf8');
+let clock = null;
 
-describe('BuildChecker', function() {
-
-  beforeEach(function(){
+describe('BuildChecker', function () {
+  beforeEach(function () {
     buildChecker = new BuildChecker();
   });
 
-  it('should have the led success port configured', function(){
+  it('should have the led success port configured', function () {
     (buildChecker.ledSuccess instanceof five.Led).should.be.equal(true);
   });
 
-  it('should have the led error port configured', function(){
+  it('should have the led error port configured', function () {
     (buildChecker.ledError instanceof five.Led).should.be.equal(true);
   });
 
-  describe('#stopPolling', function(){
-    beforeEach(function(){
+  describe('#stopPolling', function () {
+    beforeEach(function () {
       sinon.spy(global, 'clearInterval');
       buildChecker.stopPolling();
     });
 
-    it('should remove interval', function(){
+    it('should remove interval', function () {
       global.clearInterval.calledOnce.should.be.true;
     });
   });
 
-  describe('#startPolling', function(){
-    beforeEach(function(){
+  describe('#startPolling', function () {
+    beforeEach(function () {
       sinon.spy(global, 'setInterval');
       buildChecker.startPolling();
     });
 
-    afterEach(function(){
+    afterEach(function () {
       global.setInterval.restore();
     });
 
-    it('should creates polling', function(){
+    it('should creates polling', function () {
       global.setInterval.calledOnce.should.be.true;
     });
 
-    describe('When the CI server send success response', function(){
-      beforeEach(function() {
+    describe('When the CI server send success response', function () {
+      beforeEach(function () {
         clock = sinon.useFakeTimers();
         sinon.stub(request, 'get').yields(null, null, successResponseCI);
         sinon.spy(buildChecker.ledSuccess, 'on');
@@ -657,23 +640,22 @@ describe('BuildChecker', function() {
         clock.tick(CONFIG.INTERVAL);
       });
 
-      afterEach(function(){
+      afterEach(function () {
         request.get.restore();
         clock.restore();
       });
 
-      it('should turn on the success led', function(){
+      it('should turn on the success led', function () {
         buildChecker.ledSuccess.on.calledOnce.should.be.true;
       });
 
-      it('should turn off the error led', function(){
+      it('should turn off the error led', function () {
         buildChecker.ledError.off.calledOnce.should.be.true;
       });
-
     });
 
-    describe('When the CI server send error response', function(){
-      beforeEach(function() {
+    describe('When the CI server send error response', function () {
+      beforeEach(function () {
         clock = sinon.useFakeTimers();
         sinon.stub(request, 'get').yields(null, null, errorResponseCI);
         sinon.spy(buildChecker.ledError, 'on');
@@ -682,23 +664,20 @@ describe('BuildChecker', function() {
         clock.tick(CONFIG.INTERVAL);
       });
 
-      afterEach(function(){
+      afterEach(function () {
         request.get.restore();
         clock.restore();
       });
 
-      it('should turn off the success led', function(){
+      it('should turn off the success led', function () {
         buildChecker.ledSuccess.off.calledOnce.should.be.true;
       });
 
-      it('should turn on the error led', function(){
+      it('should turn on the error led', function () {
         buildChecker.ledError.on.calledOnce.should.be.true;
       });
-
     });
-
   });
-
 });
 ```
 
