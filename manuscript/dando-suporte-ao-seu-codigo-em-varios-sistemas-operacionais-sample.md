@@ -4,33 +4,27 @@ Nesta etapa do livro iremos então validar e verificar a cobertura de testes no 
 
 Esta etapa é muito importante, pois estas ferramentas nos auxiliam no processo de segurança do nosso código, checando diferentes critérios de aceitação da nossa aplicação de maneira automatizada.
 
-
 ## Adicionando servidores de integração contínua ao seu projeto
-
 
 Como todo projeto de qualidade, o nosso projeto Nodebots vai se preocupar em alguns outros aspectos, como automatização da suíte de testes, build e outras tarefas relevantes ao nosso projeto.
 
-
 Para isso vamos contar com o auxílio de um servidor de integração contínua. Existem vários no mercado, sendo gratuitos ou pagos, e nesta etapa do livro vamos conhecer um pouco mais do funcionamento e configuração de dois deles: Travis-CI e Appveyor.
 
-
-### Travis-CI: checando seu código no  Linux e OSX
+### Travis-CI: checando seu código no Linux e OSX
 
 Sabendo que atualmente os sistemas operacionais mais utilizados são Unix/Linux, Windows e OSX vamos criar verificações para cada um deles e para isto entra em cena o Travis-CI.
 
-
 Ele é um dos mais famosos serviços de [integração contínua](http://blog.caelum.com.br/integracao-continua/) e auxilia no processo de integração das novas funcionalidades ou correção de bugs do código do atual projeto em vários ambientes, podendo até mesmo efetuar o deploy para produção, caso todos os passos de validação estejam corretos.
 
-
-Vamos então ao site oficial do projeto [travis-ci](https://travis-ci.org/) e habilitar o acesso utilizando a nossa conta do Github. Clique no botão *"Sign up"* e habilite acesso aos seus repositórios.
+Vamos então ao site oficial do projeto [travis-ci](https://travis-ci.org/) e habilitar o acesso utilizando a nossa conta do Github. Clique no botão _"Sign up"_ e habilite acesso aos seus repositórios.
 
 ![Site do serviço Travis-CI](images/image27.png)
 
-Após esta etapa você será redirecionado para uma  nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto *"My Repositories"*.
+Após esta etapa você será redirecionado para uma nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto _"My Repositories"_.
 
 ![Página de um repositório configurado no Travis-CI](images/image24.png)
 
-Após esta etapa você será redirecionado para uma  nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto "My Repositories".
+Após esta etapa você será redirecionado para uma nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto "My Repositories".
 
 Esta próxima etapa é bem simples já que a página possui um tutorial mostrando cada um dos passos para habilitar a integração do Travis-CI com o seu repositório no Github, como podemos observar na imagem abaixo.
 
@@ -59,12 +53,11 @@ Adicionaremos também o campo `"node_js"`, aonde ficarão as nossas informaçõe
 ```
 ...
 node_js:
-  - '5.3.0'
+  - '12.16.2'
 ...
 ```
 
 O nosso servidor de integração contínua nada mais é do que um container com um sistema operacional completo. Sendo assim podemos também configurar variáveis de ambiente nele. Neste caso adicionaremos a variável `NO_SERIALPORT_INSTALL`, especificando que não devemos instalar o pacote "serialport" neste caso, pois trata-se de um teste que utiliza um `mock` de um board físico.
-
 
 OBS: A idéia deste livro é de focar nos conceitos relacionados diretamente com Nodebots e integrações com o repositório javascript criado, por isso não explicarei sobre o conceito de `containers`. Caso queira saber mais sobre este conceito utilizado pelo Travis-CI, acesse a página oficial do [projeto Docker](https://www.docker.com).
 
@@ -96,7 +89,7 @@ os:
   - linux
   - osx
 node_js:
-  - '5.3.0'
+  - '12.16.2'
 before_script:
   - 'npm install'
 
