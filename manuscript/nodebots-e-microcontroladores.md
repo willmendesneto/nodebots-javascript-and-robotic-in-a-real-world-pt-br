@@ -127,8 +127,6 @@ Para o nosso projeto inicial vamos instalar o framework Johnny-Five como uma das
 $ npm install --save johnny-five
 ```
 
-![Instalando o pacote Johnny-Five](images/image11.png)
-
 Você pode perceber que agora temos alguns arquivos novos na pasta do nosso projeto.
 
 Primeiramente, foi criada a pasta `node_modules` e dentro dela temos o nosso pacote instalado com sucesso.
