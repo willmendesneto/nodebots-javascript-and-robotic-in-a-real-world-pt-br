@@ -4,33 +4,27 @@ Nesta etapa do livro iremos então validar e verificar a cobertura de testes no 
 
 Esta etapa é muito importante, pois estas ferramentas nos auxiliam no processo de segurança do nosso código, checando diferentes critérios de aceitação da nossa aplicação de maneira automatizada.
 
-
 ## Adicionando servidores de integração contínua ao seu projeto
-
 
 Como todo projeto de qualidade, o nosso projeto Nodebots vai se preocupar em alguns outros aspectos, como automatização da suíte de testes, build e outras tarefas relevantes ao nosso projeto.
 
-
 Para isso vamos contar com o auxílio de um servidor de integração contínua. Existem vários no mercado, sendo gratuitos ou pagos, e nesta etapa do livro vamos conhecer um pouco mais do funcionamento e configuração de dois deles: Travis-CI e Appveyor.
 
-
-### Travis-CI: checando seu código no  Linux e OSX
+### Travis-CI: checando seu código no Linux e OSX
 
 Sabendo que atualmente os sistemas operacionais mais utilizados são Unix/Linux, Windows e OSX vamos criar verificações para cada um deles e para isto entra em cena o Travis-CI.
 
-
 Ele é um dos mais famosos serviços de [integração contínua](http://blog.caelum.com.br/integracao-continua/) e auxilia no processo de integração das novas funcionalidades ou correção de bugs do código do atual projeto em vários ambientes, podendo até mesmo efetuar o deploy para produção, caso todos os passos de validação estejam corretos.
 
-
-Vamos então ao site oficial do projeto [travis-ci](https://travis-ci.org/) e habilitar o acesso utilizando a nossa conta do Github. Clique no botão *"Sign up"* e habilite acesso aos seus repositórios.
+Vamos então ao site oficial do projeto [travis-ci](https://travis-ci.org/) e habilitar o acesso utilizando a nossa conta do Github. Clique no botão _"Sign up"_ e habilite acesso aos seus repositórios.
 
 ![Site do serviço Travis-CI](images/image27.png)
 
-Após esta etapa você será redirecionado para uma  nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto *"My Repositories"*.
+Após esta etapa você será redirecionado para uma nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto _"My Repositories"_.
 
 ![Página de um repositório configurado no Travis-CI](images/image24.png)
 
-Após esta etapa você será redirecionado para uma  nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto "My Repositories".
+Após esta etapa você será redirecionado para uma nova página com todos os seus repositórios. Para adicionarmos um novo basta clicar no ícone "+" ao lado do texto "My Repositories".
 
 Esta próxima etapa é bem simples já que a página possui um tutorial mostrando cada um dos passos para habilitar a integração do Travis-CI com o seu repositório no Github, como podemos observar na imagem abaixo.
 
@@ -59,12 +53,11 @@ Adicionaremos também o campo `"node_js"`, aonde ficarão as nossas informaçõe
 ```
 ...
 node_js:
-  - '5.3.0'
+  - '12.16.2'
 ...
 ```
 
 O nosso servidor de integração contínua nada mais é do que um container com um sistema operacional completo. Sendo assim podemos também configurar variáveis de ambiente nele. Neste caso adicionaremos a variável `NO_SERIALPORT_INSTALL`, especificando que não devemos instalar o pacote "serialport" neste caso, pois trata-se de um teste que utiliza um `mock` de um board físico.
-
 
 OBS: A idéia deste livro é de focar nos conceitos relacionados diretamente com Nodebots e integrações com o repositório javascript criado, por isso não explicarei sobre o conceito de `containers`. Caso queira saber mais sobre este conceito utilizado pelo Travis-CI, acesse a página oficial do [projeto Docker](https://www.docker.com).
 
@@ -96,7 +89,7 @@ os:
   - linux
   - osx
 node_js:
-  - '5.3.0'
+  - '12.16.2'
 before_script:
   - 'npm install'
 
@@ -119,22 +112,21 @@ Com a integração testada, vamos então colocar o badge do travis-ci no nosso a
 
 Com isto terminamos a nossa integração com o servidor de integração contínua Travis-CI e temos toda a nossa suite de testes rodando nos sistemas Linux e OSX. Nesta próxima etapa vamos configurar as mesmas tarefas, mas para serem verificadas no sistema operacional Windows, utilizando outro servidor de integração contínua chamado Appveyor.
 
-
 ### Appveyor: checando seu código no Windows
 
 Muitos projetos são desenvolvidos em sistemas operacionais baseados no Unix por padrão e adicionar suporte ao Windows era considerado um grande um desafio para alguns, pois montar um ambiente de teste do Windows não era algo trivial, exigindo a compra de licenças de software.
 
-O serviço de integração contínua [Appveyor](https://www.appveyor.com/) é uma das soluç	oes usadas para testes de projetos hospedados no GitHub em ambientes Windows, facilitando este processo e assegurando que o nosso código é [cross-platform](https://en.wikipedia.org/wiki/Cross-platform), funcionando nos principais sistemas operacionais.
+O serviço de integração contínua [Appveyor](https://www.appveyor.com/) é uma das soluç oes usadas para testes de projetos hospedados no GitHub em ambientes Windows, facilitando este processo e assegurando que o nosso código é [cross-platform](https://en.wikipedia.org/wiki/Cross-platform), funcionando nos principais sistemas operacionais.
 
 Adicionar o suporte do Appveyor ao nosso projeto é uma tarefa bastante simples. Vamos então visitar o site oficial do projeto e criar um login com as nossas informações.
 
 ![Site do Appveyor](images/image46.png)
 
-Na página de login temos algumas opções listadas com suporte a alguns dos principais repositórios de código na internet. Nesta opção vamos utilizar o Github, para facilitar os próximos passos, mas vale lembrar que você pode utilizar quaisquer das opções suportadas para *login*.
+Na página de login temos algumas opções listadas com suporte a alguns dos principais repositórios de código na internet. Nesta opção vamos utilizar o Github, para facilitar os próximos passos, mas vale lembrar que você pode utilizar quaisquer das opções suportadas para _login_.
 
 ![Efetuando login no Appveyor](images/image44.png)
 
-Com o seu usuário criado e seu acesso funcionando, a página principal após o login é uma página listando todos os seus repositórios baseado em uma categoria localizada no lado esquerdo do site. No nosso caso, vamos escolher o projeto `build-checker` e clicaremos no botão *"Add"* para adicionarmos o suporte ao nosso projeto.
+Com o seu usuário criado e seu acesso funcionando, a página principal após o login é uma página listando todos os seus repositórios baseado em uma categoria localizada no lado esquerdo do site. No nosso caso, vamos escolher o projeto `build-checker` e clicaremos no botão _"Add"_ para adicionarmos o suporte ao nosso projeto.
 
 Veremos então a página do nosso projeto com as informações específicas do mesmo, atualmente.
 
@@ -150,7 +142,7 @@ Adicionaremos a versão utilizada do NodeJS no campo environment do nosso arquiv
 ...
 environment:
   matrix:
-    - nodejs_version: "5.3.0"
+    - nodejs_version: "12.16.2"
 ...
 ```
 
@@ -203,7 +195,7 @@ init:
   - git config --global core.autocrlf true
 environment:
   matrix:
-    - nodejs_version: "5.3.0"
+    - nodejs_version: "12.16.2"
 platform:
   - x86
   - x64
@@ -242,14 +234,11 @@ Por exemplo, baseado no repositório de exemplo, o nosso badge terá o seguinte 
 
 Como vocês puderam perceber adicionar suporte a vários sistemas operacionais e plataformas é uma tarefa bastante simples com o Appveyor. Os próximos passos do livro serão mais voltados ao quesito de melhorias na automação da checagem da nossa cobertura de código.
 
-
 ## Code coverage para o seu código
 
 Finalizada a comunicação do nosso repositório com os serviços de integração contínua, vamos agora adicionar novas ferramentas. Desta vez o foco é a cobertura de nosso código, checando se tudo está sendo validado corretamente de maneira automatizada antes mesmo de continuarmos com as outras etapas de desenvolvimento do nosso Nodebots.
 
-
 ### Checando a cobertura de código do nosso projeto: Conhecendo o Istanbul
-
 
 O [istanbul](http://gotwarlost.github.io/istanbul) é um pacote NodeJS para verificar a cobertura de código no nosso repositório utilizando vários parâmetros, como cobertura por linha de código, funções, declarações e [engenharia reversa](https://pt.wikipedia.org/wiki/Engenharia_reversa).
 
@@ -278,7 +267,6 @@ O retorno será o mesmo da imagem abaixo. Podem reparar que agora temos algumas 
 ![output do comando `mocha`](images/image08.png)
 
 Percebam que agora temos uma nova pasta chamada coverage com alguns arquivos e todas estas informações listadas na nossa linha de comando. Utilizaremos elas nos próximos passos para a integração com o serviço Coveralls.
-
 
 ### Integrando o servidor de integração contínua com o coveralls
 
@@ -333,11 +321,9 @@ Após adicionarmos e salvarmos este código, o resultado final a ser renderizado
 
 E com isto concluímos a nossa integração com o serviço do coveralls. Este é só um exemplo simples de uma das várias funcionalidades deste serviço e recomendo fortemente que dêem uma lida na [documentação do coveralls](https://coveralls.zendesk.com/hc/en-us) para que vocês tenham uma maior sobre este serviço.
 
-
 ### Verificando complexidade do código com o PlatoJS
 
 PlatoJS é um pacote NodeJS que nos ajudará em algumas validações do nosso código nodebots. Ele cria um relatório utilizando alguns dados gerados via análise estática do código do nosso projeto que nos mostra algumas informações como complexidade do código, dificuldade de manutenção, linhas de código, possiveis erros de implementação, dentre outros dados relevantes.
-
 
 > Caso queira saber mais sobre o PlatoJS, por favor acesse o repositório no [Github do projeto](https://github.com/es-analysis/plato)
 
