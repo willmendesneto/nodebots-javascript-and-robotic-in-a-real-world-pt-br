@@ -164,7 +164,7 @@ O campo install terá a lista dos nossos comandos iniciais. Perceba que o ps é 
 ...
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm cache clean
+  - npm cache clean --force
   - npm install
 ...
 ```
@@ -201,7 +201,7 @@ platform:
   - x64
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm cache clean
+  - npm cache clean --force
   - npm install
 test_script:
    Run the test
